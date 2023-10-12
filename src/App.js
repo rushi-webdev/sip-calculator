@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import BarChart from './BarChart';
 import "./App.css";
 import InputElement from './InputElement';
-
-
 const App = () => {
   const data = [
     5,
@@ -19,61 +17,36 @@ const App = () => {
     30,
     35,
   ];
-  let [result, setResult] = useState([{
-    am: 500,
-    r: 12,
-    du: [
-      5,
-      8,
-      10,
-      12,
-      15,
-      18,
-      20,
-      22,
-      25,
-      28,
-      30,
-      35,
-    ]
-  }]);
-
-  // console.log(result.r)
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const r = rate / (12 * 100);
     const t = duration * 12;
     const futureValue = amount * (Math.pow(1 + r, t) - 1) / r * (1 + r);
-    setResult([result.am = amount, result.r = rate, result.du = data]);
-    setInvestment(futureValue);
-    setInvestValue(duration * amount * 12);
+    console.log("future val"+futureValue);
+    setInvestment(duration * amount * 12);
+    setInvestValue(futureValue);
+    setReturn(investValue-investment);
     chart();
-
   }
   const [amount, setAmount] = useState(500);
   const [duration, setDuration] = useState(10);
   const [rate, setRate] = useState(12);
   const [investment, setInvestment] = useState(60000);
-  const [investValue, setInvestValue] = useState(56170);
-
-
+  const [investValue, setInvestValue] = useState(116170);
+  const [returnValue, setReturn] = useState(Math.abs(investValue-investment));
+  
   const [chartData, setChartData] = useState({
     datasets: [{
       label: "Users Gained",
-      data: [investment, investValue],
+      data: [investment, parseInt(investValue-investment)],
     }]
   });
-
-// console.log(result[0])
-// console.log(result[1])
-// console.log(result[0].du)
-
+console.log(returnValue)
   const chart = () => {
     setChartData({
       labels: ["Investment", "Gain"],
       datasets: [{
-        data: [investValue, parseInt(investment - investValue)],
+        data: [investment, parseInt(investValue-investment)],
         backgroundColor: [
           "#75E6DA",
           "#FFAEBC",
@@ -107,10 +80,6 @@ const App = () => {
 
     return <span>{formattedRupees}</span>;
   }
-
-
-
-
   return (
     <>
       <div className='container'>
@@ -134,8 +103,8 @@ const App = () => {
                   </div>
                   <div style={{ fontWeight: "500", color: "rgb(68,71,91)" }}>
                     <p>{<IndianRupeeFormatter amount={investment} />}</p>
+                    <p>{<IndianRupeeFormatter amount={investValue-investment} />}</p>
                     <p>{<IndianRupeeFormatter amount={investValue} />}</p>
-                    <p>{<IndianRupeeFormatter amount={investValue + investment} />}</p>
                   </div>
                 </div>
               </div>
@@ -160,7 +129,8 @@ const App = () => {
                       <td>{item} year <br /></td>
                       <td>{amount}</td>
                       <td>
-                        <IndianRupeeFormatter amount={amount * (Math.pow(1 + (rate / (12 * 100)), (item * 12)) - 1) / (rate / (12 * 100)) * (1 + (rate / (12 * 100))) + (item * amount * 12)} />
+                        <IndianRupeeFormatter amount={amount * (Math.pow(1 + (rate / (12 * 100)), (item * 12)) - 1) / (rate / (12 * 100)) * (1 + (rate / (12 * 100)))} />
+
                       </td>
                     </tr>
                   ))}
