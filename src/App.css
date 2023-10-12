@@ -1,0 +1,114 @@
+.container{
+    width: 100vw;
+    min-height: 100vh;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calculator-container{
+    width: 90vw;
+    height: 90vh;
+}
+.calculator-hero{
+    display: flex;
+}
+.calc-func{
+    padding: 2rem 0px 3rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+}
+.btn{
+    font-size: 1.1rem;
+    color: white;
+    font-weight: bold;
+    font-family: "Open Sans";
+    width: 170px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgb(7,181,137);
+    outline: none;
+    border: transparent;
+    cursor: pointer;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 80%;
+    margin-left: 1rem;
+    text-align: center;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  }
+  
+  th, td {
+    border: 1px solid black;
+  }
+
+
+@media (max-width:1000px) {
+    .calculator-hero{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .calc-func{
+        width: 90vw;
+    }
+    .table-data{
+        width: 90vw !important;
+        margin-top: 2rem;
+    }
+    table{
+        margin-left: 0rem !important;
+    }
+}
+@media (max-width:700px) {
+    h3{
+        font-size: .8rem !important;
+    }
+    input{
+        font-size: 1rem !important;
+    }
+    input[type="text"] {
+        width: 80px !important;
+    }
+    .currency-symbol{
+        right: 60px !important;
+    }
+    .btn{
+        width: 120px;
+        height: 40px;
+        font-size: .9rem;
+    }
+    .doughbar{
+        width: 250px !important;
+        height: 250px !important;
+    }
+    .input-container{
+        margin-left: 1rem !important;
+    }
+}
+
+@media (max-width:500px) {
+    .calc-func{
+        display: flex;
+        flex-direction: column;
+    }
+    .input-container{
+        width: 90%;
+    }
+    .currency-symbol{
+        right: 70px !important;
+    }
+    .doughbar-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem !important;
+    }
+    .doughbar{
+        width: 300px !important;
+        height: 300px !important;
+    }
+}
